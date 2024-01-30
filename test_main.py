@@ -9,7 +9,7 @@ def verify_title():
     driver.get("https://sdetunicorns.com")
     title = driver.title
     print(title)
-    expected_title = "Master Software Testing and Automation | SDET Unicorns"
+    expected_title = "Master Software Tsting and Automation | SDET Unicorns"
     if title == expected_title:
         print("get in")
     else:
