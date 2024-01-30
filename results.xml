@@ -1,1 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="8.969" timestamp="2024-01-30T13:53:16.719251" hostname="NEW-UDHK2J5RVEL"><testcase classname="test_main" name="test_001" time="6.063" /></testsuite></testsuites>
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="7.075" timestamp="2024-01-30T14:26:34.323310" hostname="NEW-UDHK2J5RVEL"><testcase classname="test_main" name="test_001" time="3.632"><failure message="AssertionError: assert 'Master Softw...SDET Unicorns' == 'Master Softw...SDET Unicorns'&#10;  - Master Software Tesing and Automation | SDET Unicorns&#10;  + Master Software Testing and Automation | SDET Unicorns&#10;  ?                    +">def test_001():
+&gt;       verify_title()
+
+test_main.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def verify_title():
+        driver.get("https://sdetunicorns.com")
+        title = driver.title
+        expected_title = "Master Software Tesing and Automation | SDET Unicorns"
+&gt;       assert title == expected_title
+E       AssertionError: assert 'Master Softw...SDET Unicorns' == 'Master Softw...SDET Unicorns'
+E         - Master Software Tesing and Automation | SDET Unicorns
+E         + Master Software Testing and Automation | SDET Unicorns
+E         ?                    +
+
+test_main.py:12: AssertionError</failure></testcase></testsuite></testsuites>
