@@ -8,13 +8,8 @@ driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install())
 def verify_title():
     driver.get("https://sdetunicorns.com")
     title = driver.title
-    print(title)
-    expected_title = "Master Software Tsting and Automation | SDET Unicorns"
-    if title == expected_title:
-        print("get in")
-    else:
-        print("oh no")
-    driver.quit()
+    expected_title = "Master Software Testing and Automation | SDET Unicorns"
+    assert title == expected_title
 
 
 if __name__ == '__main__':
@@ -23,3 +18,4 @@ if __name__ == '__main__':
 
 def test_001():
     verify_title()
+
