@@ -1,0 +1,5 @@
+base_url = "https://sdetunicorns.com"
+login_button = "//*[@id='menu-item-39']/a"
+email_address = "//input[@id='MLemail']"
+password = "MLpassword"
+submit_login_button = "//body/app-root[1]/app-member-login[1]/div[1]/div[1]/div[2]/div[1]/form[1]/button[1]"
