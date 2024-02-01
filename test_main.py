@@ -8,6 +8,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from browser_actions import BrowserActions
 import static_values
+from string_gen import RandomStringGenerator
+
+
+@pytest.fixture
+def random_string_generator():
+    return RandomStringGenerator()
 
 
 @pytest.fixture
@@ -16,45 +22,31 @@ def setup_teardown():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.set_window_size(1024, 600)
     driver.maximize_window()
-
     # Provide the driver instance to the test function
     yield driver
-
     # Teardown: Close the browser
     driver.quit()
 
 
 class TestClass:
-    def test_user_navigates_to_login_screen(self, setup_teardown):
-        driver = setup_teardown
-        browser_actions = BrowserActions(driver)
-        browser_actions.verify_title()
-        driver.find_element(By.XPATH, static_values.login_button).click()
-        timeout = 1
-        try:
-            element_present = EC.presence_of_element_located((By.XPATH, static_values.email_address))
-            WebDriverWait(driver, timeout).until(element_present)
-        except TimeoutException:
-            print("Timed out waiting for page to load")
-        finally:
-            print("Page loaded")
 
     def test_verify_page_title(self, setup_teardown):
         driver = setup_teardown
         browser_actions = BrowserActions(driver)
         browser_actions.verify_title()
 
+    def test_user_navigates_to_login_screen(self, setup_teardown):
+        driver = setup_teardown
+        browser_actions = BrowserActions(driver)
+        browser_actions.verify_title()
+        browser_actions.nav_login_page()
+
     def test_login(self, setup_teardown):
         driver = setup_teardown
         browser_actions = BrowserActions(driver)
         browser_actions.log_in("kev_lee2002@hotmail.com", "22Paignton")
         driver.find_element(By.XPATH, static_values.submit_login_button).click()
-        timeout = 5
-        try:
-            element_present = EC.presence_of_element_located((By.XPATH, "//a[@id='profileDropdown']"))
-            WebDriverWait(driver, timeout).until(element_present)
-        except TimeoutException:
-            print("Timed out waiting for page to load")
+        browser_actions.wait_until(static_values.account_dropdown)
         expected_title = "SDET Unicorns"
         assert driver.title == expected_title
 
@@ -63,9 +55,24 @@ class TestClass:
         browser_actions = BrowserActions(driver)
         browser_actions.log_in("HGDNN@gmail.com", "jhskjsh")
         driver.find_element(By.XPATH, static_values.submit_login_button).click()
-        timeout = 5
-        try:
-            element_present = EC.presence_of_element_located((By.XPATH, "//h2[@id='swal2-title']"))
-            WebDriverWait(driver, timeout).until(element_present)
-        except TimeoutException:
-            print("Timed out waiting for page to load")
+        browser_actions.wait_until(static_values.login_error_popup)
+        expected_title = "SDET Unicorns"
+        assert driver.title == expected_title
+
+    def test_nav_to_create_account(self, setup_teardown):
+        driver = setup_teardown
+        browser_actions = BrowserActions(driver)
+        browser_actions.nav_login_page()
+        driver.find_element(By.XPATH, static_values.create_account_button).click()
+        browser_actions.wait_until(static_values.login_full_name_field)
+        expected_title = "SDET Unicorns"
+        assert driver.title == expected_title
+
+    def test_create_new_account(self, setup_teardown, random_string_generator):
+        driver = setup_teardown
+        string_1 = random_string_generator.generate_random_string(length=8)
+        browser_actions = BrowserActions(driver)
+        browser_actions.nav_create_account()
+        driver.find_element(By.XPATH, static_values.login_full_name_field).send_keys(string_1)
+        driver.find_element(By.XPATH, static_values.create_account_email).send_keys(string_1 + "@hotmail.com")
+        driver.find_element(By.XPATH, static_values.create_account_password).send_keys(string_1 + "111")

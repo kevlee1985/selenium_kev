@@ -1,5 +1,12 @@
 base_url = "https://sdetunicorns.com"
 login_button = "//*[@id='menu-item-39']/a"
 email_address = "//input[@id='MLemail']"
+create_account_email = "//input[@id='MRemail']"
 password = "MLpassword"
+create_account_password = "//input[@id='MRpassword']"
 submit_login_button = "//body/app-root[1]/app-member-login[1]/div[1]/div[1]/div[2]/div[1]/form[1]/button[1]"
+create_account_button = "//a[contains(text(),'Create')]"
+login_full_name_field = "//input[@id='MRfullName']"
+account_dropdown = "//a[@id='profileDropdown']"
+login_error_popup = "//h2[@id='swal2-title']"
+
