@@ -68,17 +68,7 @@ class TestClass:
         expected_title = "SDET Unicorns"
         assert driver.title == expected_title
 
-    def test_create_new_account(self, setup_teardown, random_string_generator):
+    def test_create_new_account1(self, setup_teardown, random_string_generator):
         driver = setup_teardown
-        string_1 = random_string_generator.generate_random_string(length=8)
         browser_actions = BrowserActions(driver)
-        browser_actions.nav_create_account()
-        driver.find_element(By.XPATH, static_values.login_full_name_field).send_keys(string_1)
-        driver.find_element(By.XPATH, static_values.create_account_email).send_keys(string_1 + "@hotmail.com")
-        driver.find_element(By.XPATH, static_values.create_account_password).send_keys(string_1 + "111")
-        driver.find_element(By.XPATH, static_values.sign_up_button).click()
-        browser_actions.wait_until(static_values.email_address)
-        driver.find_element(By.XPATH, static_values.email_address).send_keys(string_1 + "@hotmail.com")
-        driver.find_element(By.ID, static_values.password).send_keys(string_1 + "111")
-        driver.find_element(By.XPATH, static_values.submit_login_button).click()
-        browser_actions.wait_until(static_values.account_dropdown)
+        browser_actions.create_new_account(random_string_generator)
