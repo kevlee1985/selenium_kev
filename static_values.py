@@ -9,4 +9,5 @@ create_account_button = "//a[contains(text(),'Create')]"
 login_full_name_field = "//input[@id='MRfullName']"
 account_dropdown = "//a[@id='profileDropdown']"
 login_error_popup = "//h2[@id='swal2-title']"
+sign_up_button = "//body/app-root[1]/app-member-register[1]/div[1]/div[1]/div[2]/div[1]/form[1]/button[1]/span[1]"
 
