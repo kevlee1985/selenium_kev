@@ -49,6 +49,14 @@ class BrowserActions:
         except TimeoutException:
             print("Timed out waiting for page to load")
 
+    def wait_until_disappear(self, element):
+        timeout = 10
+        try:
+            element_not_present = EC.invisibility_of_element_located((By.XPATH, element))
+            WebDriverWait(self.driver, timeout).until(element_not_present)
+        except TimeoutException:
+            print("Timed out waiting for element to disappear")
+
     def nav_create_account(self):
         self.nav_login_page()
         self.driver.find_element(By.XPATH, static_values.create_account_button).click()

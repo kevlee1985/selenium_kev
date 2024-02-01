@@ -72,3 +72,5 @@ class TestClass:
         driver = setup_teardown
         browser_actions = BrowserActions(driver)
         browser_actions.create_new_account(random_string_generator)
+
+

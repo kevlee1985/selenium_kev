@@ -7,7 +7,10 @@ create_account_password = "//input[@id='MRpassword']"
 submit_login_button = "//body/app-root[1]/app-member-login[1]/div[1]/div[1]/div[2]/div[1]/form[1]/button[1]"
 create_account_button = "//a[contains(text(),'Create')]"
 login_full_name_field = "//input[@id='MRfullName']"
-account_dropdown = "//a[@id='profileDropdown']"
+account_dropdown = "//body/app-root[1]/app-dashboard[1]/div[1]/app-navbar[1]/nav[1]/div[2]/ul[1]/li[1]/a[1]/div[1]/div[1]/img[1]"
 login_error_popup = "//h2[@id='swal2-title']"
 sign_up_button = "//body/app-root[1]/app-member-register[1]/div[1]/div[1]/div[2]/div[1]/form[1]/button[1]/span[1]"
-
+my_profile_button = '//body/app-root[1]/app-dashboard[1]/div[1]/app-navbar[1]/nav[1]/div[2]/ul[1]/li[1]/div[1]/a[2]'
+delete_account_button = "//button[contains(text(),'Delete')]"
+successful_dropdown = "//body/div[5]/div[1]/div[2]/div[2]"
+sign_in_success = "//body/div[5]/div[1]/div[2]/div[2]"
