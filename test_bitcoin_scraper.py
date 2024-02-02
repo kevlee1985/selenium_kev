@@ -32,7 +32,7 @@ def test_scrape_bitcoin_price():
         # Save the data to a CSV file (append mode)
         with open('c:/git/selenium_kev/bitcoin_prices.csv', mode='a+', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow([time.strftime("%Y-%m-%d %H:%M:%S"), bitcoin_price])
+            writer.writerow([time.strftime("%m-%d %H:%M"), bitcoin_price])
 
     finally:
         # Close the browser window
