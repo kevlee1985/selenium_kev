@@ -6,15 +6,13 @@ import csv
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
-# Set up ChromeOptions to run headless (without a visible browser window)
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-
 
 # Function to scrape Bitcoin price
 def test_scrape_bitcoin_price():
     # Initialize the Chrome driver
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    chrome_options = Options()
+    chrome_options.add_argument("--headless=new")
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
     driver.set_window_size(1024, 600)
     driver.maximize_window()
 
