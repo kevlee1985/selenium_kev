@@ -30,7 +30,7 @@ def test_scrape_bitcoin_price():
         print("Bitcoin Price:", bitcoin_price)
 
         # Save the data to a CSV file (append mode)
-        with open('bitcoin_prices.csv', mode='a', newline='') as file:
+        with open('bitcoin_prices.csv', mode='a+', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([time.strftime("%Y-%m-%d %H:%M:%S"), bitcoin_price])
 
