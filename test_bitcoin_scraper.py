@@ -60,7 +60,7 @@ def test_scrape_ethereum_price():
         print("Ethereum Price:", ethereum_price)
 
         # Save the data to a CSV file (append mode)
-        with open('c:/git/selenium_kev/bitcoin_prices.csv', mode='a+', newline='') as file:
+        with open('c:/git/selenium_kev/ethereum_prices.csv', mode='a+', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([time.strftime("%m-%d %H:%M"), ethereum_price])
 
