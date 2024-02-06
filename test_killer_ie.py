@@ -23,7 +23,7 @@ def random_string_generator():
 def setup_teardown():
     chrome_options = Options()
     chrome_options.add_argument("--headless=new")
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
     driver.set_window_size(1024, 600)
     driver.maximize_window()
     driver.get(url)

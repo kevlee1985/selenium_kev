@@ -4,10 +4,8 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-
 import sv_killer_de
 from killer_methods import BrowserActions
-import sv_killer
 from string_gen import RandomStringGenerator
 import time
 
@@ -23,7 +21,7 @@ def random_string_generator():
 def setup_teardown():
     chrome_options = Options()
     chrome_options.add_argument("--headless=new")
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
     driver.set_window_size(1024, 600)
     driver.maximize_window()
     driver.get(url)
