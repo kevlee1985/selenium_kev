@@ -1,5 +1,6 @@
 #uk
 base_url_uk = "https://www.killerinktattoo.co.uk/"
+expected_title = "Tattoo Supplies and Tattoo Equipment from Killer Ink Tattoo"
 login_button = "//a[@href='https://www.killerinktattoo.co.uk/customer/account/login/']"
 email_address = "//input[@id='email']"
 password = "//input[@id='pass']"
@@ -19,3 +20,5 @@ empty_shopping_cart = "//p[contains(text(),'You have no items in your shopping c
 close_icon = "//button[@class='button button--outline button--fluid' and @data-role='closeBtn']"
 remove_all_button = "//a[contains(text(),'Remove All')]"
 are_you_sure = "//span[contains(text(),'OK')]"
+cookie_button = "//a[contains(text(),'Accept all cookies')]"
+

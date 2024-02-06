@@ -4,6 +4,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sv_killer
+import sv_killer_de
 import sv_killer_ie
 from string_gen import RandomStringGenerator
 import time
@@ -20,10 +21,11 @@ class BrowserActions:
 
     def verify_title(self):
         time.sleep(5)
-        accept_button_xpath = "//a[contains(text(),'Accept all cookies')]"
+        data_file_path = self.get_data_file()
+        cookie_button = data_file_path.cookie_button
         try:
             accept_button = WebDriverWait(self.driver, 10).until(
-                EC.element_to_be_clickable((By.XPATH, accept_button_xpath)))
+                EC.element_to_be_clickable((By.XPATH, cookie_button)))
             if accept_button:
                 accept_button.click()
                 print("Cookie consent accepted.")
@@ -31,13 +33,14 @@ class BrowserActions:
                 print("Cookie consent button not found.")
         except Exception as e:
             print(f"Error handling cookie consent: {e}")
-            expected_title = "Tattoo Supplies and Tattoo Equipment from Killer Ink Tattoo"
+            expected_title = data_file_path.expected_title
             assert self.driver.title == expected_title
 
     def log_in(self, username, password):
         self.nav_login_page()
-        self.driver.find_element(By.XPATH, sv_killer.email_address).send_keys(username)
-        self.driver.find_element(By.XPATH, sv_killer.password).send_keys(password)
+        data_file_path = self.get_data_file()
+        self.driver.find_element(By.XPATH, data_file_path.email_address).send_keys(username)
+        self.driver.find_element(By.XPATH, data_file_path.password).send_keys(password)
 
     def nav_login_page(self):
         self.verify_title()
@@ -80,6 +83,8 @@ class BrowserActions:
             data_file = sv_killer
         elif 'ie' in current_url:
             data_file = sv_killer_ie
+        elif 'de' in current_url:
+            data_file = sv_killer_de
         return data_file
 
     def clear_cart(self):
