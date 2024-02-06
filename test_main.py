@@ -22,7 +22,7 @@ def setup_teardown():
     # Setup: Open the browser
     chrome_options = Options()
     chrome_options.add_argument("--headless=new")
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.set_window_size(1024, 600)
     driver.maximize_window()
     # Provide the driver instance to the test function

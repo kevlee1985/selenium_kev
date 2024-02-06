@@ -14,3 +14,4 @@ my_profile_button = '//body/app-root[1]/app-dashboard[1]/div[1]/app-navbar[1]/na
 delete_account_button = "//button[contains(text(),'Delete')]"
 successful_dropdown = "//body/div[5]/div[1]/div[2]/div[2]"
 sign_in_success = "//body/div[5]/div[1]/div[2]/div[2]"
+add_to_cart = "//button[@id='product-addtocart-button']"

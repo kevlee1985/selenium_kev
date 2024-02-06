@@ -1,0 +1,12 @@
+#ire
+base_url_ie = "https://www.killerinktattoo.ie/"
+login_button = "//a[@href='https://www.killerinktattoo.ie/customer/account/login/']"
+submit_login_button = "//button[@id='send2']"
+account_information = "//span[contains(text(),'Account Information')]"
+email_address = "//input[@id='email']"
+password = "//input[@id='pass']"
+submit_login_button = "//button[@id='send2']"
+create_account_button = "//a[contains(text(),'Create an Account')]"
+create_new_customer_account = "//h1[contains(text(),'Create New Customer Account')]"
+account_information = "//span[contains(text(),'Account Information')]"
+login_error_popup = "//div[contains(text(),'The account sign-in was incorrect or your account ')]"
