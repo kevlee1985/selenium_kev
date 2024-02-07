@@ -23,7 +23,7 @@ def random_string_generator():
 def setup_teardown():
     chrome_options = Options()
     chrome_options.add_argument("--headless=new")
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.set_window_size(1024, 600)
     driver.maximize_window()
     driver.get(url)
@@ -93,7 +93,7 @@ class TestClass:
         driver.find_element(By.XPATH, sv_killer_ie.xion_machine).click()
         driver.find_element(By.XPATH, sv_killer_ie.add_to_cart).click()
         if driver.find_elements(By.XPATH, sv_killer_ie.close_icon):
-            time.sleep(5)
+            time.sleep(3)
             driver.find_element(By.XPATH, sv_killer_ie.close_icon).click()
             print("Clicked the close button.")
         else:

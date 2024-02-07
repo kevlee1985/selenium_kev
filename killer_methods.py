@@ -47,6 +47,7 @@ class BrowserActions:
         data_file_path = self.get_data_file()
         self.wait_until(data_file_path.login_button)
         self.driver.find_element(By.XPATH, data_file_path.login_button).click()
+        self.clear_cookies()
         self.wait_until('//h1[contains(text(),"Customer Login")]')
 
     def wait_until(self, element):
@@ -85,13 +86,29 @@ class BrowserActions:
     def clear_cart(self):
         data_file_path = self.get_data_file()
         self.driver.find_element(By.XPATH, data_file_path.basket_button).click()
-        time.sleep(2)
+        time.sleep(3)
         if self.driver.find_elements(By.XPATH, data_file_path.remove_item):
             self.driver.find_element(By.XPATH, data_file_path.remove_item).click()
+            time.sleep(3)
+            if self.driver.find_elements(By.XPATH, data_file_path.are_you_sure):
+                self.driver.find_element(By.XPATH, data_file_path.are_you_sure).click()
         elif self.driver.find_elements(By.XPATH, data_file_path.remove_all_button):
             self.driver.find_element(By.XPATH, data_file_path.remove_all_button).click()
-        time.sleep(3)
-        self.driver.find_element(By.XPATH, data_file_path.are_you_sure).click()
+            time.sleep(3)
+            self.driver.find_element(By.XPATH, data_file_path.are_you_sure).click()
         self.wait_until(data_file_path.empty_shopping_cart)
 
+    def clear_cookies(self):
+        data_file_path = self.get_data_file()
+        cookie_button = data_file_path.cookie_button
+        try:
+            accept_button = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((By.XPATH, cookie_button)))
+            if accept_button:
+                accept_button.click()
+                print("Cookie consent accepted.")
+            else:
+                print("Cookie consent button not found.")
+        except Exception as e:
+            print(f"Error handling cookie consent: {e}")
 
