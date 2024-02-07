@@ -85,13 +85,13 @@ class BrowserActions:
     def clear_cart(self):
         data_file_path = self.get_data_file()
         self.driver.find_element(By.XPATH, data_file_path.basket_button).click()
+        time.sleep(2)
         if self.driver.find_elements(By.XPATH, data_file_path.remove_item):
             self.driver.find_element(By.XPATH, data_file_path.remove_item).click()
         elif self.driver.find_elements(By.XPATH, data_file_path.remove_all_button):
             self.driver.find_element(By.XPATH, data_file_path.remove_all_button).click()
-            time.sleep(3)
-            self.driver.find_element(By.XPATH, data_file_path.are_you_sure).click()
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, data_file_path.are_you_sure).click()
         self.wait_until(data_file_path.empty_shopping_cart)
-        self.driver.save_screenshot('screenshots/test.png')
 
 
