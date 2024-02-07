@@ -21,3 +21,4 @@ close_icon = "//button[@class='button button--outline button--fluid' and @data-r
 remove_all_button = "//a[contains(text(),'Alle entfernen')]"
 are_you_sure = "//span[contains(text(),'OK')]"
 cookie_button = "//a[contains(text(),'Akzeptiere alle Cookies')]"
+logout_button = "//a[contains(text(),'Logout')]"

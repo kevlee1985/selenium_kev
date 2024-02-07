@@ -45,21 +45,21 @@ class BrowserActions:
     def nav_login_page(self):
         self.verify_title()
         data_file_path = self.get_data_file()
-        self.wait_until(data_file_path.login_button)
+        self.wait_until(data_file_path.login_button, 3)
         self.driver.find_element(By.XPATH, data_file_path.login_button).click()
         self.clear_cookies()
-        self.wait_until('//h1[contains(text(),"Customer Login")]')
+        self.wait_until('//h1[contains(text(),"Customer Login")]', 2)
 
-    def wait_until(self, element):
-        timeout = 3
+    def wait_until(self, element, seconds):
+        timeout = seconds
         try:
             element_present = EC.presence_of_element_located((By.XPATH, element))
             WebDriverWait(self.driver, timeout).until(element_present)
         except TimeoutException:
             print("Timed out waiting for page to load")
 
-    def wait_until_disappear(self, element):
-        timeout = 10
+    def wait_until_disappear(self, element, seconds):
+        timeout = seconds
         try:
             element_not_present = EC.invisibility_of_element_located((By.XPATH, element))
             WebDriverWait(self.driver, timeout).until(element_not_present)
@@ -70,7 +70,7 @@ class BrowserActions:
         self.nav_login_page()
         data_file_path = self.get_data_file()
         self.driver.find_element(By.XPATH, data_file_path.create_account_button).click()
-        self.wait_until(data_file_path.create_new_customer_account)
+        self.wait_until(data_file_path.create_new_customer_account, 3)
 
     def get_data_file(self):
         data_file = ''
@@ -96,7 +96,7 @@ class BrowserActions:
             self.driver.find_element(By.XPATH, data_file_path.remove_all_button).click()
             time.sleep(3)
             self.driver.find_element(By.XPATH, data_file_path.are_you_sure).click()
-        self.wait_until(data_file_path.empty_shopping_cart)
+        self.wait_until(data_file_path.empty_shopping_cart, 3)
 
     def clear_cookies(self):
         data_file_path = self.get_data_file()

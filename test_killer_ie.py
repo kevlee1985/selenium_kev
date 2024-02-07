@@ -49,7 +49,17 @@ class TestClass:
         killer_methods = BrowserActions(driver)
         killer_methods.log_in("kev_lee2002@hotmail.com", "22Paignton")
         driver.find_element(By.XPATH, sv_killer_ie.submit_login_button).click()
-        killer_methods.wait_until(sv_killer_ie.account_information)
+        killer_methods.wait_until(sv_killer_ie.account_information, 3)
+
+    def test_logout(self, setup_teardown):
+        driver = setup_teardown
+        killer_methods = BrowserActions(driver)
+        killer_methods.log_in("kev_lee2002@hotmail.com", "22Paignton")
+        driver.find_element(By.XPATH, sv_killer_ie.submit_login_button).click()
+        killer_methods.wait_until(sv_killer_ie.account_information, 3)
+        killer_methods.wait_until(sv_killer_ie.logout_button, 3)
+        driver.find_element(By.XPATH, sv_killer_ie.logout_button).click()
+        killer_methods.wait_until(sv_killer_ie.login_button, 3)
 
     def test_unsuccessful_login(self, setup_teardown):
         driver = setup_teardown
@@ -57,7 +67,7 @@ class TestClass:
         killer_methods.log_in("HGDNN@gmail.com", "jhskjsh")
         driver.find_element(By.XPATH, sv_killer_ie.submit_login_button).click()
         time.sleep(2)
-        killer_methods.wait_until(sv_killer_ie.login_error_popup)
+        killer_methods.wait_until(sv_killer_ie.login_error_popup, 3)
 
     def test_nav_to_create_account(self, setup_teardown):
         driver = setup_teardown
@@ -69,27 +79,27 @@ class TestClass:
         killer_methods = BrowserActions(driver)
         killer_methods.log_in("kev_lee2002@hotmail.com", "22Paignton")
         driver.find_element(By.XPATH, sv_killer_ie.submit_login_button).click()
-        killer_methods.wait_until(sv_killer_ie.account_information)
+        killer_methods.wait_until(sv_killer_ie.account_information, 3)
         killer_methods.clear_cart()
         driver.find_element(By.XPATH, sv_killer_ie.search_bar).send_keys("xion")
         driver.find_element(By.XPATH, sv_killer_ie.search_bar_go_button).click()
-        killer_methods.wait_until(sv_killer_ie.xion_machine)
+        killer_methods.wait_until(sv_killer_ie.xion_machine, 3)
         driver.find_element(By.XPATH, sv_killer_ie.xion_machine).click()
         driver.find_element(By.XPATH, sv_killer_ie.add_to_cart).click()
-        killer_methods.wait_until(sv_killer_ie.basket_button)
+        killer_methods.wait_until(sv_killer_ie.basket_button, 3)
         driver.find_element(By.XPATH, sv_killer_ie.basket_button).click()
-        killer_methods.wait_until(sv_killer_ie.basket_item)
+        killer_methods.wait_until(sv_killer_ie.basket_item, 3)
 
     def test_remove_product_from_cart(self, setup_teardown):
         driver = setup_teardown
         killer_methods = BrowserActions(driver)
         killer_methods.log_in("kev_lee2002@hotmail.com", "22Paignton")
         driver.find_element(By.XPATH, sv_killer_ie.submit_login_button).click()
-        killer_methods.wait_until(sv_killer_ie.account_information)
+        killer_methods.wait_until(sv_killer_ie.account_information, 3)
         killer_methods.clear_cart()
         driver.find_element(By.XPATH, sv_killer_ie.search_bar).send_keys("xion")
         driver.find_element(By.XPATH, sv_killer_ie.search_bar_go_button).click()
-        killer_methods.wait_until(sv_killer_ie.xion_machine)
+        killer_methods.wait_until(sv_killer_ie.xion_machine, 3)
         driver.find_element(By.XPATH, sv_killer_ie.xion_machine).click()
         driver.find_element(By.XPATH, sv_killer_ie.add_to_cart).click()
         if driver.find_elements(By.XPATH, sv_killer_ie.close_icon):
@@ -99,9 +109,9 @@ class TestClass:
         else:
             print("Close button not found. Doing nothing.")
         time.sleep(5)
-        killer_methods.wait_until(sv_killer_ie.basket_button)
+        killer_methods.wait_until(sv_killer_ie.basket_button, 3)
         driver.find_element(By.XPATH, sv_killer_ie.basket_button).click()
-        killer_methods.wait_until(sv_killer_ie.basket_item)
+        killer_methods.wait_until(sv_killer_ie.basket_item, 3)
         time.sleep(2)
         driver.find_element(By.XPATH, sv_killer_ie.remove_item).click()
-        killer_methods.wait_until(sv_killer_ie.empty_shopping_cart)
+        killer_methods.wait_until(sv_killer_ie.empty_shopping_cart, 3)
