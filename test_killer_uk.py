@@ -103,3 +103,4 @@ class TestClass:
         time.sleep(2)
         driver.find_element(By.XPATH, sv_killer.remove_item).click()
         killer_methods.wait_until(sv_killer.empty_shopping_cart)
+

@@ -20,7 +20,7 @@ class BrowserActions:
         self.driver = driver
 
     def verify_title(self):
-        time.sleep(5)
+        time.sleep(3)
         data_file_path = self.get_data_file()
         cookie_button = data_file_path.cookie_button
         try:
@@ -47,15 +47,10 @@ class BrowserActions:
         data_file_path = self.get_data_file()
         self.wait_until(data_file_path.login_button)
         self.driver.find_element(By.XPATH, data_file_path.login_button).click()
-        timeout = 5
-        try:
-            element_present = EC.presence_of_element_located((By.XPATH, '//h1[contains(text(),"Customer Login")]'))
-            WebDriverWait(self.driver, timeout).until(element_present)
-        except TimeoutException:
-            print("Timed out waiting for page to load")
+        self.wait_until('//h1[contains(text(),"Customer Login")]')
 
     def wait_until(self, element):
-        timeout = 5
+        timeout = 3
         try:
             element_present = EC.presence_of_element_located((By.XPATH, element))
             WebDriverWait(self.driver, timeout).until(element_present)
@@ -97,4 +92,6 @@ class BrowserActions:
             time.sleep(3)
             self.driver.find_element(By.XPATH, data_file_path.are_you_sure).click()
         self.wait_until(data_file_path.empty_shopping_cart)
+        self.driver.save_screenshot('screenshots/test.png')
+
 

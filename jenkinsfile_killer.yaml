@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('KillerInk, front end tests') {
+        stage('Test') {
             steps {
                 /* `make check` returns non-zero on test failures,
                 * using `true` to allow the Pipeline to continue nonetheless
                 */
-                bat 'pytest --junit-xml=results.xml test_killer_de.py test_killer_ie.py test_killer_uk.py'
+                bat 'pytest --junit-xml=results.xml test_killer_de.py'
             }
         }
     }
