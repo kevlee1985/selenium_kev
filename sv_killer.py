@@ -1,4 +1,4 @@
-#uk
+# uk
 base_url_uk = "https://www.killerinktattoo.co.uk/"
 expected_title = "Tattoo Supplies and Tattoo Equipment from Killer Ink Tattoo"
 login_button = "//a[@href='https://www.killerinktattoo.co.uk/customer/account/login/']"
@@ -23,3 +23,15 @@ are_you_sure = "//span[contains(text(),'OK')]"
 cookie_button = "//a[contains(text(),'Accept all cookies')]"
 youtube = "//h2[contains(text(),'Youtube')]"
 logout_button = "//a[contains(text(),'Logout')]"
+proceed_to_checkout_button = "//span[contains(text(),'Proceed to Checkout')]"
+estimate_shipping_dropdown = '//body[1]/div[4]/main[1]/div[3]/div[2]/div[1]/div[1]/div[2]/div[1]/svg[2]/g[1]/g[1]/path[1]'
+estimate_shipping_close = "//g[@id='ki_tattoo_needle_cartridges']/path[@id='']"
+ZIP_Postal_code = "//input[@id='W2KU52M']"
+DPD_standard_radio = "//input[@type='radio' and @value='shqDPD_STD' and @id='s_method_shqDPD_STD']"
+order_review_page = "//h2[contains(text(),'Order Review')]"
+price_element = "//div[@class='amount cart-totals__row-value' and @data-th='Order Total']/span[@class='price']"
+cart_subtotal = "//div[@class='amount cart-totals__row-value' and @data-th='Cart Subtotal']"
+Tax = "//span[@class='price' and @data-th='VAT']"
+item_count = "//input[@class='cart-list-item__qty-input quantity-update__input' and @title='Qty']"
+basket_screen_price = "//div[@class='cart-totals__row-value cart-totals__row-value--total']/span[@class='price']"
+add_item_icon = "//button[contains(@class, 'quantity-update__button--plus')]"

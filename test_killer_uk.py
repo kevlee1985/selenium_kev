@@ -75,42 +75,51 @@ class TestClass:
     def test_add_product_to_cart(self, setup_teardown):
         driver = setup_teardown
         killer_methods = BrowserActions(driver)
-        killer_methods.log_in("kev_lee2002@hotmail.com", "22Paignton")
-        driver.find_element(By.XPATH, sv_killer.submit_login_button).click()
-        killer_methods.wait_until(sv_killer.account_information, 3)
-        killer_methods.clear_cart()
-        driver.find_element(By.XPATH, sv_killer.search_bar).send_keys("xion")
-        driver.find_element(By.XPATH, sv_killer.search_bar_go_button).click()
-        killer_methods.wait_until(sv_killer.xion_machine, 3)
-        driver.find_element(By.XPATH, sv_killer.xion_machine).click()
-        driver.find_element(By.XPATH, sv_killer.add_to_cart).click()
-        killer_methods.wait_until(sv_killer.basket_button, 3)
-        driver.find_element(By.XPATH, sv_killer.basket_button).click()
-        killer_methods.wait_until(sv_killer.basket_item, 3)
+        killer_methods.add_product_to_cart()
 
     def test_remove_product_from_cart(self, setup_teardown):
         driver = setup_teardown
         killer_methods = BrowserActions(driver)
-        killer_methods.log_in("kev_lee2002@hotmail.com", "22Paignton")
-        driver.find_element(By.XPATH, sv_killer.submit_login_button).click()
-        killer_methods.wait_until(sv_killer.account_information, 3)
-        killer_methods.clear_cart()
-        driver.find_element(By.XPATH, sv_killer.search_bar).send_keys("xion")
-        driver.find_element(By.XPATH, sv_killer.search_bar_go_button).click()
-        killer_methods.wait_until(sv_killer.xion_machine, 3)
-        driver.find_element(By.XPATH, sv_killer.xion_machine).click()
-        driver.find_element(By.XPATH, sv_killer.add_to_cart).click()
-        if driver.find_elements(By.XPATH, sv_killer.close_icon):
-            time.sleep(5)
-            driver.find_element(By.XPATH, sv_killer.close_icon).click()
-            print("Clicked the close button.")
-        else:
-            print("Close button not found. Doing nothing.")
-        time.sleep(5)
-        killer_methods.wait_until(sv_killer.basket_button, 3)
-        driver.find_element(By.XPATH, sv_killer.basket_button).click()
+        killer_methods.add_product_to_cart()
         killer_methods.wait_until(sv_killer.basket_item, 3)
         time.sleep(2)
         driver.find_element(By.XPATH, sv_killer.remove_item).click()
         killer_methods.wait_until(sv_killer.empty_shopping_cart, 3)
 
+    def test_checkout_total(self, setup_teardown):
+        driver = setup_teardown
+        killer_methods = BrowserActions(driver)
+        killer_methods.add_product_to_cart()
+        killer_methods.wait_until(sv_killer.proceed_to_checkout_button, 3)
+        time.sleep(5)
+        driver.find_element(By.XPATH, sv_killer.proceed_to_checkout_button).click()
+        killer_methods.wait_until(sv_killer.order_review_page, 10)
+        expected_title = "Checkout"
+        total_price = 562.74
+        time.sleep(5)
+        price_element = driver.find_element(By.XPATH, sv_killer.price_element).text
+        cart_subtotal = driver.find_element(By.XPATH, sv_killer.cart_subtotal).text
+        tax = driver.find_element(By.XPATH, sv_killer.Tax).text
+        price_text = float(price_element[1:])
+        subtotal_text = float(cart_subtotal[1:])
+        tax_text = float(tax[1:])
+        assert expected_title == driver.title
+        assert total_price == price_text
+        assert price_text == subtotal_text + tax_text
+
+    def test_adding_elements_to_basket(self, setup_teardown):
+        driver = setup_teardown
+        killer_methods = BrowserActions(driver)
+        killer_methods.add_product_to_cart()
+        killer_methods.wait_until(sv_killer.proceed_to_checkout_button, 3)
+        time.sleep(5)
+        price_element = driver.find_element(By.XPATH, sv_killer.basket_screen_price).text
+        price_text = float(price_element[1:])
+        print(price_text)
+        driver.find_element(By.XPATH, sv_killer.add_item_icon).click()
+        time.sleep(5)
+        item_count = driver.find_element(By.XPATH, sv_killer.item_count)
+        value_attribute = int(item_count.get_attribute("value"))
+        total_price = 1125.48
+        assert value_attribute == 2
+        assert total_price == price_text * value_attribute

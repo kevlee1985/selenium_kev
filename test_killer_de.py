@@ -1,5 +1,6 @@
 import pytest as pytest
 from selenium import webdriver
+from selenium.webdriver import Keys
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
@@ -22,7 +23,7 @@ def setup_teardown():
     chrome_options = Options()
     chrome_options.add_argument("--headless=new")
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    driver.set_window_size(1024, 600)
+    driver.set_window_size(512, 300)
     driver.maximize_window()
     driver.get(url)
     yield driver
@@ -113,3 +114,4 @@ class TestClass:
         time.sleep(2)
         driver.find_element(By.XPATH, sv_killer_de.remove_item).click()
         killer_methods.wait_until(sv_killer_de.empty_shopping_cart, 3)
+

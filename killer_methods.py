@@ -112,3 +112,21 @@ class BrowserActions:
         except Exception as e:
             print(f"Error handling cookie consent: {e}")
 
+    def add_product_to_cart(self):
+        self.log_in("kev_lee2002@hotmail.com", "22Paignton")
+        self.driver.find_element(By.XPATH, sv_killer.submit_login_button).click()
+        self.wait_until(sv_killer.account_information, 3)
+        self.clear_cart()
+        self.driver.find_element(By.XPATH, sv_killer.search_bar).send_keys("xion")
+        self.driver.find_element(By.XPATH, sv_killer.search_bar_go_button).click()
+        self.wait_until(sv_killer.xion_machine, 3)
+        self.driver.find_element(By.XPATH, sv_killer.xion_machine).click()
+        self.driver.find_element(By.XPATH, sv_killer.add_to_cart).click()
+        time.sleep(5)
+        if self.driver.find_elements(By.XPATH, sv_killer.close_icon):
+            self.driver.find_element(By.XPATH, sv_killer.close_icon).click()
+        else:
+            self.wait_until(sv_killer.basket_button, 3)
+        time.sleep(5)
+        self.driver.find_element(By.XPATH, sv_killer.basket_button).click()
+        self.wait_until(sv_killer.basket_item, 3)
