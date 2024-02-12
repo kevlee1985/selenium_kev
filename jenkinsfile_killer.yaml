@@ -4,10 +4,11 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                /* `make check` returns non-zero on test failures,
-                * using `true` to allow the Pipeline to continue nonetheless
-                */
+                // Run pytest and generate HTML report
                 bat 'pytest --html=report.html test_killer_uk.py'
+    
+                // Open HTML report in the default web browser
+                bat 'start report.html'
             }
         }
     }
