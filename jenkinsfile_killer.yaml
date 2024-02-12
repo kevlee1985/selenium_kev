@@ -4,15 +4,10 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                // Install pytest-html
-                bat 'pip install pytest-html'
-    
-                // Run pytest and generate HTML report
-                bat 'pytest --html=report.html test_killer_uk.py'
-    
-                // Open HTML report in the default web browser
-                bat 'start report.html'
-                }
+                /* `make check` returns non-zero on test failures,
+                * using `true` to allow the Pipeline to continue nonetheless
+                */
+                bat 'pytest --junit-xml=results.xml test_killer_uk.py'
             }
         }
     }
