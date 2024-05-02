@@ -1,4 +1,5 @@
 import pytest
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
@@ -131,3 +132,10 @@ class BrowserActions:
         time.sleep(5)
         self.driver.find_element(By.XPATH, data_file_path.basket_button).click()
         self.wait_until(data_file_path.basket_item, 3)
+
+    def hover_over_element(self, element):
+        element_to_hover = self.driver.find_element(By.XPATH, element)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(element_to_hover).perform()
+
+
