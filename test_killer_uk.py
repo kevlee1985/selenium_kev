@@ -22,7 +22,7 @@ def random_string_generator():
 @pytest.fixture
 def setup_teardown():
     chrome_options = Options()
-    chrome_options.add_argument("--headless=new")
+    chrome_options.add_argument("--headless")
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.set_window_size(1024, 600)
     driver.maximize_window()
